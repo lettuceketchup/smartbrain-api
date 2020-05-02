@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cors());
 
 // ROOT
-app.get('/', (req, res) => { res.json(database.users) });
+app.get('/', (req, res) => { res.json(db.users) });
 // SIGNIN
 app.post('/signin', signin.handleSignin(db, bcrypt));
 // REGISTER
