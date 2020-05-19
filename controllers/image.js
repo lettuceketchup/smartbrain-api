@@ -12,7 +12,7 @@
 // }
 
 const axios = require('axios');
-FACEDETECT_API = 'http://127.0.0.1:5000/image/';
+FACEDETECT_API = 'https://face-detect-api996.herokuapp.com/image/';
 
 const handleAPICall = (req, response) => {
     axios.post(FACEDETECT_API, {
