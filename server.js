@@ -11,6 +11,10 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
+        // For Heroku
+        // connectionString: process.env.DATABASE_URL,
+        // ssl: { rejectUnauthorized: false }
+        // For Local
         host: '127.0.0.1',
         user: 'postgres',
         password: 'pradhumn123',
@@ -23,7 +27,7 @@ app.use(express.json());
 app.use(cors());
 
 // ROOT
-app.get('/', (req, res) => { res.json(database.users) });
+app.get('/', (req, res) => { res.json(db.users) });
 // SIGNIN
 app.post('/signin', signin.handleSignin(db, bcrypt));
 // REGISTER
@@ -34,5 +38,8 @@ app.get('/profile/:id', profile.handleProfileGet(db));
 app.post('/imageurl', image.handleAPICall);
 app.put('/image', image.handleImage(db));
 
-const PORT = process.env.PORT;
+// For Heroku
+// const PORT = process.env.PORT;
+// For Local
+const PORT = 3005;
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));
