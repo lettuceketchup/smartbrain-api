@@ -12,7 +12,10 @@
 // }
 
 const axios = require('axios');
+// For Heroku
 FACEDETECT_API = 'https://face-detect-api996.herokuapp.com/image/';
+// For Local
+// FACEDETECT_API = 'http://127.0.0.1:5000/image/';
 
 const handleAPICall = (req, response) => {
     axios.post(FACEDETECT_API, {
@@ -23,7 +26,7 @@ const handleAPICall = (req, response) => {
             response.json(res.data)
         })
         .catch(err => {
-            console.log(err)
+            // console.log(err)
             response.status(400).json("Unable to work with API")
         })
         .finally(console.log(req.body.input))
